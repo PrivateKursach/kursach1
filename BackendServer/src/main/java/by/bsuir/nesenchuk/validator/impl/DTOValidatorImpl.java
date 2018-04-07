@@ -1,8 +1,8 @@
-package by.bsuir.nesenchuk.dto.validator.impl;
+package by.bsuir.nesenchuk.validator.impl;
 
 import by.bsuir.nesenchuk.dto.DTO;
-import by.bsuir.nesenchuk.dto.validator.DTOValidator;
-import by.bsuir.nesenchuk.dto.validator.exception.DTOValidationException;
+import by.bsuir.nesenchuk.validator.DTOValidator;
+import by.bsuir.nesenchuk.validator.exception.DTOValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

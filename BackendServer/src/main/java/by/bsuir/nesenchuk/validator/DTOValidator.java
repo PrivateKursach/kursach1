@@ -1,4 +1,4 @@
-package by.bsuir.nesenchuk.dto.validator;
+package by.bsuir.nesenchuk.validator;
 
 import by.bsuir.nesenchuk.dto.DTO;
 

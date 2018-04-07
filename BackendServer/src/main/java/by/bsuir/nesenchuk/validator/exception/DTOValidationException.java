@@ -1,4 +1,4 @@
-package by.bsuir.nesenchuk.dto.validator.exception;
+package by.bsuir.nesenchuk.validator.exception;
 
 import java.util.List;
 
