@@ -1,0 +1,10 @@
+<ul uib-pagination total-items="$ctrl.totalItems"
+    items-per-page="$ctrl.itemsPerPage"
+    ng-model="$ctrl.currentPage"
+    ng-change="$ctrl.pageChanged()"
+    force-ellipses="true"
+    max-size="7"
+    boundary-link-numbers="true"
+    next-text=">"
+    previous-text="<"
+></ul>

@@ -1,0 +1,41 @@
+<div class="clearfix">
+    <div class="buttons-block">
+        <button ng-if="isAdmin()" class="btn btn-primary btn-md">Создать тренинг</button>
+    </div>
+</div>
+
+<div class="alert alert-danger" ng-show="$ctrl.errorMessage">
+    {{ $ctrl.errorMessage }}
+</div>
+<div class="alert alert-info" ng-show="$ctrl.trainingList.length == 0">
+    Тренинги отсутствуют
+</div>
+
+<div ng-if="$ctrl.totalItems > $ctrl.itemsPerPage">
+    <tp-pagination current-page="$ctrl.currentPage"
+                   items-per-page="$ctrl.itemsPerPage"
+                   total-items="$ctrl.totalItems"
+                   on-page-changed="$ctrl.pageChanged(currentPage)"
+    ></tp-pagination>
+</div>
+
+<div class="clearfix">
+    <div class="well" ng-repeat="training in $ctrl.trainingList">
+        <h3><a ui-sref="training({ trainingId : training.id, prevState : $ctrl.getStateInfo() })">{{ training.name }}</a></h3>
+        <p><span class="tag" ng-repeat="type in product.types">{{ type.name }}</span></p>
+        <p>Старт: {{ training.startDate }}</p>
+        <p>Окончание: {{ training.endDate }}</p>
+        <p>{{ training.description }}</p>
+        <div class="buttons-block">
+            <a class="btn btn-sm btn-primary" ng-if="isLogged()">Подать заявку</a>
+        </div>
+    </div>
+</div>
+
+<div ng-if="$ctrl.totalItems > $ctrl.itemsPerPage">
+    <tp-pagination current-page="$ctrl.currentPage"
+                   items-per-page="$ctrl.itemsPerPage"
+                   total-items="$ctrl.totalItems"
+                   on-page-changed="$ctrl.pageChanged(currentPage)"
+    ></tp-pagination>
+</div>

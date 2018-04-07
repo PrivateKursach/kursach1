@@ -1,30 +1,19 @@
-CREATE SEQUENCE TP_TRAINING_SEQ INCREMENT BY 1 START WITH 1;
+CREATE SCHEMA `training_portal` ;
 
-CREATE TABLE TP_TRAINING
-(
-  ID NUMBER NOT NULL
-, NAME VARCHAR2(100) NOT NULL
-, DESCRIPTION CLOB
-, START_DATE DATE NOT NULL
-, END_DATE DATE NOT NULL
-);
+CREATE TABLE `training_portal`.`tp_training` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  `description` MEDIUMTEXT NULL,
+  `start_date` DATE NOT NULL,
+  `end_date` DATE NOT NULL,
+  PRIMARY KEY (`id`));
 
-ALTER TABLE TP_TRAINING
-ADD CONSTRAINT TP_TRAINING_PK PRIMARY KEY
-(
-  ID
-)
-ENABLE;
+CREATE TABLE `training_portal`.`tp_user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(100) NULL,
+  `last_name` VARCHAR(100) NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `role` INT NOT NULL,
+  PRIMARY KEY (`id`));
 
-begin
- execute immediate 'create or replace trigger TP_TRAINING  '||chr(10)||
-	'   before insert on "SYSTEM"."TP_TRAINING" '||chr(10)||
-	'   for each row '||chr(10)||
-	'begin  '||chr(10)||
-	'   if inserting then '||chr(10)||
-	'      if :NEW."ID" is null then '||chr(10)||
-	'         select TP_TRAINING_SEQ.nextval into :NEW."ID" from dual; '||chr(10)||
-	'      end if; '||chr(10)||
-	'   end if; '||chr(10)||
-	'end;'||chr(10);
-	end;

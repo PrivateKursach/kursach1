@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.LocalDate;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TrainingDTO {
+public class TrainingDTO implements DTO {
 
     private Long id;
     private String name;

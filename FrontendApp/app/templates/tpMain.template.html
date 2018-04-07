@@ -1,0 +1,29 @@
+<div class="wrapper">
+
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Training Portal</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="trainingList">Тренинги</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ui-sref-active="active" ng-if="!isLogged()"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+                    <li ui-sref-active="active" ng-if="!isLogged()"><a ui-sref="registration">Регистрация</a></li>
+                    <li ng-if="isLogged()"><a ng-click="$ctrl.logout()"><span class="glyphicon glyphicon-log-in"></span> Выйти</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <ui-view></ui-view>
+    </main>
+
+</div>
+
+<footer class="container-fluid">
+    <p class="text-center">Training Portal © 2018</p>
+</footer>>

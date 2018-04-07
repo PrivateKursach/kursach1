@@ -20,10 +20,10 @@
     <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${dao.driverClassName}"/>
-        <property name="url" value="${dao.url}"/>
-        <property name="username" value="${dao.username}"/>
-        <property name="password" value="${dao.password}"/>
+        <property name="driverClassName" value="${connection.driverClassName}"/>
+        <property name="url" value="${connection.url}"/>
+        <property name="username" value="${connection.username}"/>
+        <property name="password" value="${connection.password}"/>
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -34,7 +34,7 @@
         <property name="packagesToScan" value="by.bsuir.nesenchuk.entity"/>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.max_fetch_depth">3</prop>
                 <prop key="hibernate.jdbc.fetch_size">50</prop>
                 <prop key="hibernate.jdbc.batch_size">10</prop>
