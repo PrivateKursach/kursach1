@@ -3,7 +3,7 @@ function routing($stateProvider, $urlRouterProvider) {
 
     var welcomeState = {
         name: "welcome",
-        url: "/?page",
+        url: "/?page&name&trainer&location&minDate&maxDate&types",
         component: "trainingList",
         params: {
             page: {
@@ -15,7 +15,7 @@ function routing($stateProvider, $urlRouterProvider) {
 
     var trainingListState = {
         name: "trainingList",
-        url: "/trainings?page",
+        url: "/trainings?page&name&trainer&location&minDate&maxDate&types",
         component: "trainingList",
         params: {
             page: {
