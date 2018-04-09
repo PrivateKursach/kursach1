@@ -9,12 +9,6 @@ function MainController($rootScope, $cookies, $state) {
     $ctrl.$onInit = function () {
         $rootScope.sessionUserId = $cookies.get("sessionUserId");
         $rootScope.sessionUserRole = $cookies.get("sessionUserRole");
-        $rootScope.isLogged = function () {
-            return this.sessionUserId;
-        };
-        $rootScope.isAdmin = function () {
-            return this.sessionUserRole == 0;
-        };
     };
 
     $ctrl.logout = function () {
@@ -24,5 +18,13 @@ function MainController($rootScope, $cookies, $state) {
         $cookies.put("sessionRole", undefined);
 
         $state.go("welcome");
+    };
+    
+    $ctrl.isLogged = function () {
+        return $rootScope.sessionUserId;
+    };
+
+    $ctrl.isAdmin = function () {
+        return $rootScope.sessionUserRole == 0;
     };
 }

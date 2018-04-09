@@ -10,9 +10,9 @@
                     <li ui-sref-active="active"><a ui-sref="trainingList">Тренинги</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li ui-sref-active="active" ng-if="!isLogged()"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
-                    <li ui-sref-active="active" ng-if="!isLogged()"><a ui-sref="registration">Регистрация</a></li>
-                    <li ng-if="isLogged()"><a ng-click="$ctrl.logout()"><span class="glyphicon glyphicon-log-in"></span> Выйти</a></li>
+                    <li ui-sref-active="active" ng-if="!$ctrl.isLogged()"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+                    <li ui-sref-active="active" ng-if="!$ctrl.isLogged()"><a ui-sref="registration">Регистрация</a></li>
+                    <li ng-if="$ctrl.isLogged()"><a ng-click="$ctrl.logout()"><span class="glyphicon glyphicon-log-in"></span> Выйти</a></li>
                 </ul>
             </div>
         </nav>
