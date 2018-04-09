@@ -1,0 +1,56 @@
+<div class="jumbotron">
+    <h3>Регистрация</h3>
+    <form role="form" name="registration">
+        <div class="form-group">
+            <label for="first_name">Имя:</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" ng-model="$ctrl.registrationForm.firstName">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Фамилия:</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" ng-model="$ctrl.registrationForm.lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Электронная почта:</label>
+            <input type="email" class="form-control" id="email" name="email" ng-model="$ctrl.registrationForm.email" ng-minlength="6" ng-maxlength="100" required>
+        </div>
+        <div class="alert alert-danger" ng-show="registration.email.$touched && registration.email.$error.required">
+            Электронная почта обязательна для заполнения
+        </div>
+        <div class="alert alert-danger" ng-show="registration.email.$touched && registration.email.$error.minlength">
+            Минимальная длина электронной почты 6 символов
+        </div>
+        <div class="alert alert-danger" ng-show="registration.email.$touched && registration.email.$error.maxlength">
+            Максимальная длина электронной почты 100 символов
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" class="form-control" id="password" name="password" ng-model="$ctrl.registrationForm.password" ng-minlength="6" ng-maxlength="100" required>
+        </div>
+        <div class="alert alert-danger" ng-show="registration.password.$touched && registration.password.$error.required">
+            Пароль обязателен для заполнения
+        </div>
+        <div class="alert alert-danger" ng-show="registration.password.$touched && registration.password.$error.minlength">
+            Минимальная длина пароля 6 символов
+        </div>
+        <div class="alert alert-danger" ng-show="registration.password.$touched && registration.password.$error.maxlength">
+            Максимальная длина пароля 100 символов
+        </div>
+        <div class="form-group">
+            <label for="repeat_password">Повторите пароль:</label>
+            <input type="password" class="form-control" id="repeat_password" name="repeat_password" ng-model="$ctrl.repeatPassword" ng-minlength="6" ng-maxlength="100" required>
+        </div>
+        <div class="alert alert-danger" ng-show="registration.repeat_password.$touched && registration.repeat_password.$error.required">
+            Пароль обязателен для заполнения
+        </div>
+        <div class="alert alert-danger" ng-show="registration.repeat_password.$touched && registration.repeat_password.$error.minlength">
+            Минимальная длина пароля 6 символов
+        </div>
+        <div class="alert alert-danger" ng-show="registration.repeat_password.$touched && registration.repeat_password.$error.maxlength">
+            Максимальная длина пароля 100 символов
+        </div>
+        <div class="alert alert-danger" ng-show="registration.password.$touched && registration.repeat_password.$touched && $ctrl.registrationForm.password != $ctrl.repeatPassword">
+            Пароли не совпадают
+        </div>
+        <button type="submit" class="btn btn-md btn-primary" ng-click="$ctrl.register()">Регистрация</button>
+    </form>
+</div>

@@ -9,7 +9,7 @@ CREATE TABLE `training_portal`.`tp_training` (
   PRIMARY KEY (`id`));
 
 CREATE TABLE `training_portal`.`tp_user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(100) NULL,
   `last_name` VARCHAR(100) NULL,
   `email` VARCHAR(100) NOT NULL,

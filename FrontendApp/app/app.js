@@ -1,6 +1,10 @@
 angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap"])
     .config(routing)
     .service("trainingService", trainingService)
+    .service("sessionService", sessionService)
+    .service("userService", userService)
     .component("tpMain", tpMainComponent)
     .component("trainingList", trainingListComponent)
-    .component("tpPagination", tpPaginationComponent);
+    .component("tpPagination", tpPaginationComponent)
+    .component("tpLogin", tpLoginComponent)
+    .component("tpRegistration", tpRegistrationComponent);

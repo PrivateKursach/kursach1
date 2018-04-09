@@ -3,14 +3,26 @@ function routing($stateProvider, $urlRouterProvider) {
 
     var welcomeState = {
         name: "welcome",
-        url: "/",
-        component: "trainingList"
+        url: "/?page",
+        component: "trainingList",
+        params: {
+            page: {
+                value: '1',
+                squash: true
+            }
+        }
     };
 
     var trainingListState = {
         name: "trainingList",
-        url: "/trainings",
-        component: "trainingList"
+        url: "/trainings?page",
+        component: "trainingList",
+        params: {
+            page: {
+                value: '1',
+                squash: true
+            }
+        }
     };
 
     var loginState = {
