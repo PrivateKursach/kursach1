@@ -1,0 +1,18 @@
+<div class="jumbotron">
+    <div class="alert alert-danger" ng-show="$ctrl.errorMessage">
+        {{ $ctrl.errorMessage }}
+    </div>
+    <div ng-show="$ctrl.training">
+        <h3>{{ $ctrl.training.name }}</h3>
+        <p><span class="tag" ng-repeat="type in $ctrl.training.types">{{ type.name }}</span></p>
+        <p>Тренер: {{ $ctrl.training.trainer }}</p>
+        <p>Локация: {{ $ctrl.training.location }}</p>
+        <p>Старт: {{ $ctrl.training.startDate | date:'fullDate' }}</p>
+        <p>Окончание: {{ $ctrl.training.endDate | date:'fullDate' }}</p>
+        <p>{{ $ctrl.training.description }}</p>
+        <div class="buttons-block">
+            <a class="btn btn-primary btn-md" ng-if="$ctrl.isAdmin()" ui-sref="updateTraining({ trainingId : $ctrl.training.id })">Редактировать</a>
+            <a class="btn btn-default btn-md" ng-if="$ctrl.isAdmin()" ng-click="$ctrl.openDeleteTrainingModal($ctrl.training.id)">Удалить</a>
+        </div>
+    </div>
+</div>

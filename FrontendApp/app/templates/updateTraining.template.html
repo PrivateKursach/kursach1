@@ -1,5 +1,5 @@
 <div class="jumbotron">
-    <h3>Создание тренинга</h3>
+    <h3>Редактирование тренинга</h3>
     <form role="form" name="createTraining">
         <div class="form-group">
             <label for="name">Название:</label>
@@ -95,6 +95,6 @@
                    autocomplete="off">
             <p><span class="tag" ng-repeat="type in $ctrl.training.types">{{ type.name }}<span class="glyphicon glyphicon-remove" ng-click="$ctrl.removeType(type)"></span></span></p>
         </div>
-        <button type="submit" class="btn btn-md btn-primary" ng-click="$ctrl.createTraining()">Создать</button>
+        <button type="submit" class="btn btn-md btn-primary" ng-click="$ctrl.updateTraining()">Сохранить</button>
     </form>
 </div>

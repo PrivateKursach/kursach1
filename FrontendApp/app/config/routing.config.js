@@ -42,10 +42,24 @@ function routing($stateProvider, $urlRouterProvider) {
         url: "/trainings/create",
         component: "createTraining"
     };
+    
+    var trainingState = {
+        name: "training",
+        url: "/trainings/{trainingId}",
+        component: "training"
+    };
+    
+    var updateTrainingState = {
+        name: "updateTraining",
+        url: "/trainings/{trainingId}/update",
+        component: "updateTraining"
+    };
 
     $stateProvider.state(welcomeState);
     $stateProvider.state(trainingListState);
     $stateProvider.state(registrationState);
     $stateProvider.state(loginState);
     $stateProvider.state(createTrainingState);
+    $stateProvider.state(trainingState);
+    $stateProvider.state(updateTrainingState);
 }

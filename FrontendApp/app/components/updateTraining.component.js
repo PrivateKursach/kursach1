@@ -1,17 +1,24 @@
-var createTrainingComponent = {
-    templateUrl : "./templates/createTraining.template.html",
-    controller : CreateTrainingController
+var updateTrainingComponent = {
+    templateUrl : "./templates/updateTraining.template.html",
+    controller : UpdateTrainingController
 };
 
-function CreateTrainingController(trainingService, $state) {
+function UpdateTrainingController(trainingService, $state, $stateParams) {
     var $ctrl = this;
-    
+
     $ctrl.$onInit = function () {
-        $ctrl.training = {
-            startDate: new Date(),
-            endDate: new Date(),
-            types: []
-        };
+        trainingService.getTrainingById($stateParams.trainingId).then(function (response) {
+            $ctrl.training = {
+                id: response.id,
+                name: response.name,
+                trainer: response.trainer,
+                location: response.location,
+                description: response.description,
+                startDate: new Date(response.startDate),
+                endDate: new Date(response.endDate),
+                types: response.types
+            };
+        });
         trainingService.getAllTrainingTypes().then(function (response) {
             $ctrl.types = response;
         });
@@ -55,8 +62,9 @@ function CreateTrainingController(trainingService, $state) {
         $ctrl.isShowEndDatePicker = true;
     };
 
-    $ctrl.createTraining = function () {
-        trainingService.createTraining({
+    $ctrl.updateTraining = function () {
+        trainingService.updateTraining({
+            id: $ctrl.training.id,
             name: $ctrl.training.name,
             trainer: $ctrl.training.trainer,
             location: $ctrl.training.location,
@@ -65,7 +73,7 @@ function CreateTrainingController(trainingService, $state) {
             endDate: $ctrl.training.endDate.toISOString().substring(0, 10),
             types: $ctrl.training.types
         }).then(function (response) {
-            $state.go("trainingList");
+            $state.go("training", { trainingId: $ctrl.training.id });
         });
     };
 }

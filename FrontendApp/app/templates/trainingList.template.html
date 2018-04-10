@@ -104,7 +104,6 @@
 <div class="clearfix">
     <div class="well clearfix" ng-repeat="training in $ctrl.trainingList">
         <h3><a ui-sref="training({ trainingId : training.id, prevState : $ctrl.getStateInfo() })">{{ training.name }}</a></h3>
-        <p><span class="tag" ng-repeat="type in product.types">{{ type.name }}</span></p>
         <p>Тренер: {{ training.trainer }}</p>
         <p>Локация: {{ training.location }}</p>
         <p>Старт: {{ training.startDate | date:'fullDate' }}</p>
