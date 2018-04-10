@@ -2,6 +2,7 @@ package by.bsuir.nesenchuk.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "tp_training")
@@ -19,6 +20,14 @@ public class Training {
     private LocalDate startDate;
     @Column(name = "end_date")
     private LocalDate endDate;
+    @Column(name = "trainer_name")
+    private String trainerName;
+    @Column(name = "location")
+    private String location;
+
+    @ManyToMany
+    @JoinTable(name = "tp_training_training_type", joinColumns = @JoinColumn(name = "training_id"), inverseJoinColumns = @JoinColumn(name = "training_type_id"))
+    private Set<TrainingType> types;
 
     public Long getId() {
         return id;
@@ -58,6 +67,30 @@ public class Training {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public String getTrainerName() {
+        return trainerName;
+    }
+
+    public void setTrainerName(String trainerName) {
+        this.trainerName = trainerName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Set<TrainingType> getTypes() {
+        return types;
+    }
+
+    public void setTypes(Set<TrainingType> types) {
+        this.types = types;
     }
 
     @Override

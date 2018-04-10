@@ -9,5 +9,7 @@ public interface TrainingService {
     Training getTrainingById(Long id);
     Training updateTraining(Training training);
     void deleteTraining(Long id);
-    List<Training> getTrainings(int offset, int limit);
+    List<Training> getTrainings();
+    List<String> getTrainers();
+    List<String> getLocations();
 }

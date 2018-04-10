@@ -20,6 +20,8 @@ public class TrainingConverterImpl implements TrainingConverter {
         trainingDTO.setDescription(training.getDescription());
         trainingDTO.setStartDate(training.getStartDate());
         trainingDTO.setEndDate(training.getEndDate());
+        trainingDTO.setTrainer(training.getTrainerName());
+        trainingDTO.setLocation(training.getLocation());
         return trainingDTO;
     }
 
@@ -31,6 +33,8 @@ public class TrainingConverterImpl implements TrainingConverter {
         training.setDescription(trainingDTO.getDescription());
         training.setStartDate(trainingDTO.getStartDate());
         training.setEndDate(trainingDTO.getEndDate());
+        training.setTrainerName(trainingDTO.getTrainer());
+        training.setLocation(trainingDTO.getLocation());
         return training;
     }
 

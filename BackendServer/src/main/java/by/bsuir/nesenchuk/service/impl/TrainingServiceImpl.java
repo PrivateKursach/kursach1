@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -48,8 +52,24 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<Training> getTrainings(int offset, int limit) {
-        return trainingDAO.getTrainings(offset, limit);
+    public List<Training> getTrainings() {
+        return trainingDAO.getTrainings();
+    }
+
+    @Override
+    public List<String> getTrainers() {
+        List<Training> trainings = getTrainings();
+        Set<String> trainers = new HashSet<>(trainings.size());
+        trainers.addAll(trainings.stream().map(Training::getTrainerName).collect(Collectors.toList()));
+        return new ArrayList<>(trainers);
+    }
+
+    @Override
+    public List<String> getLocations() {
+        List<Training> trainings = getTrainings();
+        Set<String> locations = new HashSet<>(trainings.size());
+        locations.addAll(trainings.stream().map(Training::getLocation).collect(Collectors.toList()));
+        return new ArrayList<>(locations);
     }
 
 }

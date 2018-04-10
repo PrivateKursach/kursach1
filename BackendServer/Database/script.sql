@@ -17,3 +17,27 @@ CREATE TABLE `training_portal`.`tp_user` (
   `role` INT NOT NULL,
   PRIMARY KEY (`id`));
 
+CREATE TABLE `training_portal`.`tp_training_type` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `training_portal`.`tp_training_training_type` (
+  `training_id` BIGINT(20) NOT NULL,
+  `training_type_id` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`training_id`, `training_type_id`),
+  INDEX `tp_training_training_type_fk2_idx` (`training_type_id` ASC),
+  CONSTRAINT `tp_training_training_type_fk1`
+  FOREIGN KEY (`training_id`)
+  REFERENCES `training_portal`.`tp_training` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `tp_training_training_type_fk2`
+  FOREIGN KEY (`training_type_id`)
+  REFERENCES `training_portal`.`tp_training_type` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+ALTER TABLE `training_portal`.`tp_training`
+  ADD COLUMN `trainer_name` VARCHAR(100) NULL AFTER `end_date`,
+  ADD COLUMN `location` VARCHAR(150) NULL AFTER `trainer_name`;

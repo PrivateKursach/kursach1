@@ -19,23 +19,17 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
             maxStartDate: $stateParams.maxDate,
             types: ($stateParams.types) ? $stateParams.types.toString().split(",") : []
         };
-        console.log($ctrl.searchForm);
+        $ctrl.searchForm.typesObj = [];
         trainingService.getTrainings().then(function (response) {
             $ctrl.allTrainings = response;
-            console.log($ctrl.allTrainings);
             var filteredTrainings = [];
             $ctrl.allTrainings.forEach(function (training) {
                 if (matchesSearchForm(training)) {
                     filteredTrainings.push(training);
                 }
             });
-            console.log(filteredTrainings);
             $ctrl.trainingList = filteredTrainings.slice(offset, offset + limit);
-            console.log(offset);
-            console.log(limit);
-            console.log($ctrl.trainingList);
             $ctrl.totalItems = filteredTrainings.length;
-            console.log($ctrl.totalItems);
             $ctrl.itemsPerPage = limit;
             $ctrl.currentPage = page;
         }, function (errResponse) {
@@ -43,6 +37,15 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
         });
         trainingService.getAllTrainingTypes().then(function (response) {
             $ctrl.types = response;
+            if ($ctrl.searchForm.types) {
+                $ctrl.types.forEach(function (item, index, arr) {
+                    $ctrl.searchForm.types.forEach(function (searchFormItem, searchFormIndex, searchFormArr) {
+                        if (item.id == searchFormItem) {
+                            $ctrl.searchForm.typesObj.push(item);
+                        }
+                    });
+                });
+            }
         });
     };
 

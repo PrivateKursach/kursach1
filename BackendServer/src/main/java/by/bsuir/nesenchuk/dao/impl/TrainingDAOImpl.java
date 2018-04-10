@@ -38,9 +38,9 @@ public class TrainingDAOImpl implements TrainingDAO {
     }
 
     @Override
-    public List<Training> getTrainings(int offset, int limit) {
+    public List<Training> getTrainings() {
         TypedQuery<Training> query = entityManager.createQuery("select t from Training t", Training.class);
-        return query.setFirstResult(offset).setMaxResults(limit).getResultList();
+        return query.getResultList();
     }
 
 }

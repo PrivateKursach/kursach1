@@ -9,5 +9,5 @@ public interface TrainingDAO {
     Training getTrainingById(Long id);
     Training updateTraining(Training training);
     void deleteTraining(Long id);
-    List<Training> getTrainings(int offset, int limit);
+    List<Training> getTrainings();
 }
