@@ -10,4 +10,5 @@ angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap"])
     .component("tpRegistration", tpRegistrationComponent)
     .component("createTraining", createTrainingComponent)
     .component("training", trainingComponent)
-    .component("updateTraining", updateTrainingComponent);
+    .component("updateTraining", updateTrainingComponent)
+    .component("deleteTraining", deleteTrainingComponent);
