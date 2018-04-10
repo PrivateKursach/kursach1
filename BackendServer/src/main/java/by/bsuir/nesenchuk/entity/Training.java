@@ -25,7 +25,7 @@ public class Training {
     @Column(name = "location")
     private String location;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tp_training_training_type", joinColumns = @JoinColumn(name = "training_id"), inverseJoinColumns = @JoinColumn(name = "training_type_id"))
     private Set<TrainingType> types;
 

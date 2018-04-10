@@ -3,6 +3,7 @@ package by.bsuir.nesenchuk.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -15,7 +16,7 @@ public class TrainingDTO implements DTO {
     private LocalDate endDate;
     private String trainer;
     private String location;
-    private List<TrainingTypeDTO> types;
+    private List<TrainingTypeDTO> types = new ArrayList<>();
 
     public Long getId() {
         return id;

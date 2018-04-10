@@ -1,16 +1,25 @@
 package by.bsuir.nesenchuk.converter.impl;
 
 import by.bsuir.nesenchuk.converter.TrainingConverter;
+import by.bsuir.nesenchuk.converter.TrainingTypeConverter;
 import by.bsuir.nesenchuk.dto.TrainingDTO;
+import by.bsuir.nesenchuk.dto.TrainingTypeDTO;
 import by.bsuir.nesenchuk.entity.Training;
+import by.bsuir.nesenchuk.entity.TrainingType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class TrainingConverterImpl implements TrainingConverter {
+
+    @Autowired
+    private TrainingTypeConverter trainingTypeConverter;
 
     @Override
     public TrainingDTO convertToDTO(Training training) {
@@ -22,6 +31,7 @@ public class TrainingConverterImpl implements TrainingConverter {
         trainingDTO.setEndDate(training.getEndDate());
         trainingDTO.setTrainer(training.getTrainerName());
         trainingDTO.setLocation(training.getLocation());
+        trainingDTO.setTypes(trainingTypeConverter.convertToDTOList(new ArrayList<>(training.getTypes())));
         return trainingDTO;
     }
 
@@ -35,6 +45,11 @@ public class TrainingConverterImpl implements TrainingConverter {
         training.setEndDate(trainingDTO.getEndDate());
         training.setTrainerName(trainingDTO.getTrainer());
         training.setLocation(trainingDTO.getLocation());
+        if (!trainingDTO.getTypes().isEmpty()) {
+            Set<TrainingType> trainingTypes = new HashSet<>(trainingDTO.getTypes().size());
+            trainingTypes.addAll(trainingDTO.getTypes().stream().map(trainingTypeDTO -> trainingTypeConverter.convertToEntity(trainingTypeDTO)).collect(Collectors.toList()));
+            training.setTypes(trainingTypes);
+        }
         return training;
     }
 
