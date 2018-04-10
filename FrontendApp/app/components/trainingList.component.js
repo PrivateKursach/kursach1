@@ -15,8 +15,8 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
             name: $stateParams.name,
             trainer: $stateParams.trainer,
             location: $stateParams.location,
-            minStartDate: $stateParams.minDate,
-            maxStartDate: $stateParams.maxDate,
+            minStartDate: $stateParams.minDate ? new Date($stateParams.minDate) : null,
+            maxStartDate: $stateParams.maxDate ? new Date($stateParams.maxDate) : null,
             types: ($stateParams.types) ? $stateParams.types.toString().split(",") : []
         };
         $ctrl.searchForm.typesObj = [];
@@ -47,6 +47,12 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
                 });
             }
         });
+        trainingService.getAllTrainingTrainers().then(function (response) {
+            $ctrl.trainers = response;
+        });
+        trainingService.getAllTrainingLocations().then(function (response) {
+            $ctrl.locations = response;
+        });
     };
 
     $ctrl.getStateInfo = function () {
@@ -68,6 +74,32 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
         return $rootScope.sessionUserRole == 0;
     };
 
+    $ctrl.selectType = function ($item, $model, $label, $event) {
+        $ctrl.typesInput = "";
+
+        var typeIndex = $ctrl.searchForm.types.findIndex(function (type, index, types) {
+            if (type == $item.id) {
+                return true;
+            }
+        });
+
+        if (typeIndex == -1) {
+            $ctrl.searchForm.types.push($item.id);
+            $ctrl.searchForm.typesObj.push($item);
+        }
+    };
+
+    $ctrl.removeType = function (typeToRemove) {
+        var typeIndex = $ctrl.searchForm.types.findIndex(function (type, index, types) {
+            if (type == typeToRemove.id) {
+                return true;
+            }
+        });
+
+        $ctrl.searchForm.types.splice(typeIndex, 1);
+        $ctrl.searchForm.typesObj.splice(typeIndex, 1);
+    };
+
     $ctrl.applySearch = function () {
         $state.go(
             '.',
@@ -76,21 +108,39 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
                 name: $ctrl.searchForm.name,
                 trainer: $ctrl.searchForm.trainer,
                 location: $ctrl.searchForm.location,
-                minDate: $ctrl.searchForm.minStartDate,
-                maxDate: $ctrl.searchForm.maxStartDate,
+                minDate: $ctrl.searchForm.minStartDate ? $ctrl.searchForm.minStartDate.toISOString().substring(0, 10) : null,
+                maxDate: $ctrl.searchForm.maxStartDate ? $ctrl.searchForm.maxStartDate.toISOString().substring(0, 10) : null,
                 types: ($ctrl.searchForm.types.length == 0) ? null : $ctrl.searchForm.types.toString()
             },
             { notify: false }
         );
+    };
+
+    $ctrl.showMinDatePicker = function () {
+        $ctrl.isShowMinDatePicker = true;
+    };
+
+    $ctrl.showMaxDatePicker = function () {
+        $ctrl.isShowMaxDatePicker = true;
     };
     
     function matchesSearchForm(training) {
         var matchesName = $ctrl.searchForm.name ? training.name.indexOf($ctrl.searchForm.name) !== -1 : true;
         var matchesTrainer = $ctrl.searchForm.trainer ? training.trainer.indexOf($ctrl.searchForm.trainer) !== -1 : true;
         var matchesLocation = $ctrl.searchForm.location ? training.location.indexOf($ctrl.searchForm.location) !== -1 : true;
-        var matchesMinStartDate = $ctrl.searchForm.minStartDate ? training.startDate > $ctrl.searchForm.minStartDate !== -1 : true;
-        var matchesMaxStartDate = $ctrl.searchForm.maxStartDate ? training.startDate < $ctrl.searchForm.maxStartDate !== -1 : true;
+        var matchesMinStartDate = $ctrl.searchForm.minStartDate ? new Date(training.startDate) >= $ctrl.searchForm.minStartDate : true;
+        var matchesMaxStartDate = $ctrl.searchForm.maxStartDate ? new Date(training.startDate) <= $ctrl.searchForm.maxStartDate : true;
         var matchesTypes = true;
+        if ($ctrl.searchForm.types && $ctrl.searchForm.types.length > 0) {
+            matchesTypes = false;
+            training.types.forEach(function (trainingType, i, trainingTypes) {
+                $ctrl.searchForm.types.forEach(function (searchFormType, j, searchFormTypes) {
+                    if (trainingType.id == searchFormType) {
+                        matchesTypes = true;
+                    }
+                });
+            });
+        }
         return matchesName && matchesTrainer && matchesLocation && matchesMinStartDate && matchesMaxStartDate && matchesTypes;
     }
 

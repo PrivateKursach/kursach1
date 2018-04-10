@@ -17,21 +17,55 @@
                     <label>Дата проведения</label>
                 </div>
                 <div class="col-xs-6">
-                    <label for="min-date">$С:</label>
-                    <input ng-model="$ctrl.searchForm.minStartDate" type="number" id="min-date" class="form-control">
+                    <label>С:</label>
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               uib-datepicker-popup
+                               ng-model="$ctrl.searchForm.minStartDate"
+                               close-text="Закрыть"
+                               is-open="$ctrl.isShowMinDatePicker"
+                        />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.showMinDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
                 <div class="col-xs-6">
-                    <label for="max-date">$До:</label>
-                    <input ng-model="$ctrl.searchForm.maxStartDate" type="number" id="max-date" class="form-control">
+                    <label>До:</label>
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               uib-datepicker-popup
+                               ng-model="$ctrl.searchForm.maxStartDate"
+                               close-text="Закрыть"
+                               is-open="$ctrl.isShowMaxDatePicker"
+                        />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.showMaxDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
             </div>
             <div class="form-group col-sm-6">
                 <label for="trainer">Тренер</label>
-                <input ng-model="$ctrl.searchForm.trainer" type="text" id="trainer" class="form-control">
+                <input type="text"
+                       class="form-control"
+                       id="trainer"
+                       name="trainer"
+                       ng-model="$ctrl.searchForm.trainer"
+                       uib-typeahead="trainer for trainer in $ctrl.trainers | filter:$viewValue | limitTo:8"
+                       autocomplete="off">
             </div>
             <div class="form-group col-sm-6">
-                <label for="location">Тренер</label>
-                <input ng-model="$ctrl.searchForm.location" type="text" id="location" class="form-control">
+                <label for="location">Локация</label>
+                <input type="text"
+                       class="form-control"
+                       id="location"
+                       name="location"
+                       ng-model="$ctrl.searchForm.location"
+                       uib-typeahead="location for location in $ctrl.locations | filter:$viewValue | limitTo:8"
+                       autocomplete="off">
             </div>
             <div class="form-group col-sm-6">
                 <label for="types">Категории:</label>
@@ -73,8 +107,8 @@
         <p><span class="tag" ng-repeat="type in product.types">{{ type.name }}</span></p>
         <p>Тренер: {{ training.trainer }}</p>
         <p>Локация: {{ training.location }}</p>
-        <p>Старт: {{ training.startDate }}</p>
-        <p>Окончание: {{ training.endDate }}</p>
+        <p>Старт: {{ training.startDate | date:'fullDate' }}</p>
+        <p>Окончание: {{ training.endDate | date:'fullDate' }}</p>
         <p>{{ training.description }}</p>
         <div class="buttons-block">
             <a class="btn btn-sm btn-primary" ng-if="$ctrl.isLogged()">Подать заявку</a>
