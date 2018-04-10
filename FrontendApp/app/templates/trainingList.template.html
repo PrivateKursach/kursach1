@@ -43,7 +43,7 @@
                        uib-typeahead="type.name for type in $ctrl.types | filter:$viewValue | limitTo:8"
                        typeahead-on-select="$ctrl.selectType($item, $model, $label, $event)"
                        autocomplete="off">
-                <p><span class="tag" ng-repeat="type in $ctrl.searchForm.types">{{ type.name }}<span class="glyphicon glyphicon-remove" ng-click="$ctrl.removeType(type)"></span></span></p>
+                <p><span class="tag" ng-repeat="type in $ctrl.searchForm.typesObj">{{ type.name }}<span class="glyphicon glyphicon-remove" ng-click="$ctrl.removeType(type)"></span></span></p>
             </div>
         </div>
         <div class="form-group">
@@ -71,6 +71,8 @@
     <div class="well clearfix" ng-repeat="training in $ctrl.trainingList">
         <h3><a ui-sref="training({ trainingId : training.id, prevState : $ctrl.getStateInfo() })">{{ training.name }}</a></h3>
         <p><span class="tag" ng-repeat="type in product.types">{{ type.name }}</span></p>
+        <p>Тренер: {{ training.trainer }}</p>
+        <p>Локация: {{ training.location }}</p>
         <p>Старт: {{ training.startDate }}</p>
         <p>Окончание: {{ training.endDate }}</p>
         <p>{{ training.description }}</p>
