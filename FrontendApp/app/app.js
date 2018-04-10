@@ -7,4 +7,5 @@ angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap"])
     .component("trainingList", trainingListComponent)
     .component("tpPagination", tpPaginationComponent)
     .component("tpLogin", tpLoginComponent)
-    .component("tpRegistration", tpRegistrationComponent);
+    .component("tpRegistration", tpRegistrationComponent)
+    .component("createTraining", createTrainingComponent);

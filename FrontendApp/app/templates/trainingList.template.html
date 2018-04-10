@@ -1,6 +1,6 @@
 <div class="clearfix">
     <div class="buttons-block">
-        <button ng-if="isAdmin()" class="btn btn-primary btn-md">Создать тренинг</button>
+        <a ng-if="$ctrl.isAdmin()" class="btn btn-primary btn-md" ui-sref="createTraining">Создать тренинг</a>
     </div>
 </div>
 

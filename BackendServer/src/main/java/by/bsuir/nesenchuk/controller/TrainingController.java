@@ -4,15 +4,13 @@ import by.bsuir.nesenchuk.converter.TrainingConverter;
 import by.bsuir.nesenchuk.converter.TrainingTypeConverter;
 import by.bsuir.nesenchuk.dto.TrainingDTO;
 import by.bsuir.nesenchuk.dto.TrainingTypeDTO;
+import by.bsuir.nesenchuk.entity.Training;
 import by.bsuir.nesenchuk.service.TrainingService;
 import by.bsuir.nesenchuk.service.TrainingTypeService;
 import by.bsuir.nesenchuk.validator.DTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,5 +48,29 @@ public class TrainingController {
     @GetMapping("/locations")
     public ResponseEntity<List<String>> getAllLocations() {
         return ResponseEntity.ok(trainingService.getLocations());
+    }
+
+    @PostMapping
+    public ResponseEntity<TrainingDTO> createTraining(@RequestBody TrainingDTO trainingDTO) {
+        Training createdTraining = trainingService.createTraining(trainingConverter.convertToEntity(trainingDTO));
+        return ResponseEntity.ok(trainingConverter.convertToDTO(createdTraining));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TrainingDTO> updateTraining(@RequestBody TrainingDTO trainingDTO, @PathVariable Long id) {
+        trainingDTO.setId(id);
+        Training updatedTraining = trainingService.updateTraining(trainingConverter.convertToEntity(trainingDTO));
+        return ResponseEntity.ok(trainingConverter.convertToDTO(updatedTraining));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTraining(@PathVariable Long id) {
+        trainingService.deleteTraining(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TrainingDTO> getTrainingById(@PathVariable Long id) {
+        return ResponseEntity.ok(trainingConverter.convertToDTO(trainingService.getTrainingById(id)));
     }
 }

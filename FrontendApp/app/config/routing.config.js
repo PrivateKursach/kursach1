@@ -36,9 +36,16 @@ function routing($stateProvider, $urlRouterProvider) {
         url: "/registration",
         component: "tpRegistration"
     };
+    
+    var createTrainingState = {
+        name: "createTraining",
+        url: "/trainings/create",
+        component: "createTraining"
+    };
 
     $stateProvider.state(welcomeState);
     $stateProvider.state(trainingListState);
     $stateProvider.state(registrationState);
     $stateProvider.state(loginState);
+    $stateProvider.state(createTrainingState);
 }

@@ -1,0 +1,100 @@
+<div class="jumbotron">
+    <h3>Создание тренинга</h3>
+    <form role="form" name="createTraining">
+        <div class="form-group">
+            <label for="name">Название:</label>
+            <input type="text" class="form-control" id="name" name="name" ng-model="$ctrl.training.name" ng-minlength="6" ng-maxlength="100" required>
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.name.$touched && createTraining.name.$error.required">
+            Название тренинга обязательно для заполнения
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.name.$touched && createTraining.name.$error.minlength">
+            Минимальная длина названия 6 символов
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.name.$touched && createTraining.name.$error.maxlength">
+            Максимальная длина названия 100 символов
+        </div>
+        <div class="form-group">
+            <label for="trainer">Тренер:</label>
+            <input type="text"
+                   class="form-control"
+                   id="trainer"
+                   name="trainer"
+                   ng-model="$ctrl.training.trainer"
+                   uib-typeahead="trainer for trainer in $ctrl.trainers | filter:$viewValue | limitTo:8"
+                   autocomplete="off" required ng-maxlength="100">
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.trainer.$touched && createTraining.trainer.$error.required">
+            Тренер обязателен для заполнения
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.trainer.$touched && createTraining.trainer.$error.maxlength">
+            Максимальная длина имени тренера 100 символов
+        </div>
+        <div class="form-group">
+            <label for="location">Локация:</label>
+            <input type="text"
+                   class="form-control"
+                   id="location"
+                   name="location"
+                   ng-model="$ctrl.training.location"
+                   uib-typeahead="location for location in $ctrl.locations | filter:$viewValue | limitTo:8"
+                   autocomplete="off" required ng-maxlength="100">
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.location.$touched && createTraining.location.$error.required">
+            Локация обязательна для заполнения
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.location.$touched && createTraining.location.$error.maxlength">
+            Максимальная длина имени локации 100 символов
+        </div>
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <textarea class="form-control" id="description" name="description" rows="5" ng-model="$ctrl.training.description" required></textarea>
+        </div>
+        <div class="alert alert-danger" ng-show="createTraining.description.$touched && createTraining.description.$invalid">
+            Описание не может быть пустым
+        </div>
+        <div class="form-group">
+            <label>Дата старта:</label>
+            <p class="input-group">
+                <input type="text"
+                       class="form-control"
+                       uib-datepicker-popup
+                       ng-model="$ctrl.training.startDate"
+                       close-text="Закрыть"
+                       is-open="$ctrl.isShowStartDatePicker"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.showStartDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+        <div class="form-group">
+            <label>Дата окончания:</label>
+            <p class="input-group">
+                <input type="text"
+                       class="form-control"
+                       uib-datepicker-popup
+                       ng-model="$ctrl.training.endDate"
+                       close-text="Закрыть"
+                       is-open="$ctrl.isShowEndDatePicker"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.showEndDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="types">Категории:</label>
+            <input type="text"
+                   class="form-control"
+                   id="types"
+                   name="types"
+                   ng-model="$ctrl.typesInput"
+                   uib-typeahead="type.name for type in $ctrl.types | filter:$viewValue | limitTo:8"
+                   typeahead-on-select="$ctrl.selectType($item, $model, $label, $event)"
+                   autocomplete="off">
+            <p><span class="tag" ng-repeat="type in $ctrl.training.types">{{ type.name }}<span class="glyphicon glyphicon-remove" ng-click="$ctrl.removeType(type)"></span></span></p>
+        </div>
+        <button type="submit" class="btn btn-md btn-primary" ng-click="$ctrl.createTraining()">Созздать</button>
+    </form>
+</div>
