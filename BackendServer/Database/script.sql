@@ -41,3 +41,30 @@ CREATE TABLE `training_portal`.`tp_training_training_type` (
 ALTER TABLE `training_portal`.`tp_training`
   ADD COLUMN `trainer_name` VARCHAR(100) NULL AFTER `end_date`,
   ADD COLUMN `location` VARCHAR(150) NULL AFTER `trainer_name`;
+
+CREATE TABLE `training_portal`.`tp_request` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT(20) NOT NULL,
+  `training_id` BIGINT(20) NOT NULL,
+  `status` INT NOT NULL,
+  `rating` INT NOT NULL,
+  `date_created` DATE NOT NULL,
+  PRIMARY KEY (`id`));
+
+ALTER TABLE `training_portal`.`tp_request`
+  ADD INDEX `tp_request_fk1_idx` (`training_id` ASC);
+ALTER TABLE `training_portal`.`tp_request`
+  ADD CONSTRAINT `tp_request_fk1`
+FOREIGN KEY (`training_id`)
+REFERENCES `training_portal`.`tp_training` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+ALTER TABLE `training_portal`.`tp_request`
+  ADD INDEX `tp_request_fk2_idx` (`user_id` ASC);
+ALTER TABLE `training_portal`.`tp_request`
+  ADD CONSTRAINT `tp_request_fk2`
+FOREIGN KEY (`user_id`)
+REFERENCES `training_portal`.`tp_user` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;

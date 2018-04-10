@@ -1,6 +1,7 @@
 package by.bsuir.nesenchuk.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "tp_user")
@@ -20,6 +21,9 @@ public class User {
     private String password;
     @Column(name = "role")
     private Integer role;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Request> requests;
 
     public Long getId() {
         return id;

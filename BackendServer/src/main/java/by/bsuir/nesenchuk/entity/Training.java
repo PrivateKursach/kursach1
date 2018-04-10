@@ -29,6 +29,9 @@ public class Training {
     @JoinTable(name = "tp_training_training_type", joinColumns = @JoinColumn(name = "training_id"), inverseJoinColumns = @JoinColumn(name = "training_type_id"))
     private Set<TrainingType> types;
 
+    @OneToMany(mappedBy = "training")
+    private Set<Request> requests;
+
     public Long getId() {
         return id;
     }
