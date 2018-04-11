@@ -10,4 +10,5 @@ public interface RequestDAO {
     Request getRequestById(Long id);
     List<Request> getRequestsByUserId(Long userId);
     List<Request> getAllRequests();
+    List<Request> getRequestsByTrainingId(Long trainingId);
 }

@@ -42,4 +42,10 @@ public class RequestDAOImpl implements RequestDAO {
         TypedQuery<Request> query = entityManager.createQuery("select r from Request r", Request.class);
         return query.getResultList();
     }
+
+    @Override
+    public List<Request> getRequestsByTrainingId(Long trainingId) {
+        TypedQuery<Request> query = entityManager.createQuery("select r from Request r where r.training.id = :trainingId", Request.class);
+        return query.setParameter("trainingId", trainingId).getResultList();
+    }
 }
