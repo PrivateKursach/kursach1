@@ -3,7 +3,7 @@ var requestListComponent = {
     controller : RequestListController
 };
 
-function RequestListController(requestService, $state, $stateParams, $rootScope) {
+function RequestListController(requestService, $state, $stateParams, $rootScope, $uibModal) {
     var $ctrl = this;
 
     $ctrl.$onInit = function () {
@@ -22,8 +22,16 @@ function RequestListController(requestService, $state, $stateParams, $rootScope)
         return $rootScope.sessionUserRole == 0;
     };
     
-    $ctrl.approveRequest = function (requestId) {
-        requestService.approveRequest(requestId).then(function (response) {
+    $ctrl.approveRequest = function (request) {
+        var modalInstance = $uibModal.open({
+            component : "approveRequest",
+            resolve : {
+                request : function () {
+                    return request;
+                }
+            }
+        });
+        modalInstance.result.then(function () {
             setRequestList();
         });
     };

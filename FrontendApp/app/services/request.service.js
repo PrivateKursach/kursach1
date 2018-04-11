@@ -28,7 +28,7 @@ function requestService($http) {
         });
     };
 
-    service.createTraining = function (request) {
+    service.createRequest = function (request) {
         return $http({
             method : "POST",
             url : "http://localhost:8081/rest/users/" + request.user.id + "/requests",

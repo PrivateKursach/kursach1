@@ -3,7 +3,7 @@ var trainingListComponent = {
     controller : TrainingListController
 };
 
-function TrainingListController(trainingService, $state, $stateParams, $rootScope) {
+function TrainingListController(trainingService, $state, $stateParams, $rootScope, $uibModal) {
     var $ctrl = this;
 
     $ctrl.$onInit = function () {
@@ -122,6 +122,23 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
 
     $ctrl.showMaxDatePicker = function () {
         $ctrl.isShowMaxDatePicker = true;
+    };
+    
+    $ctrl.createRequest = function (trainingId) {
+        var modalInstance = $uibModal.open({
+            component : "createRequest",
+            resolve : {
+                trainingId : function () {
+                    return trainingId;
+                },
+                userId: function () {
+                    return $rootScope.sessionUserId
+                }
+            }
+        });
+        modalInstance.result.then(function () {
+            $state.go("requestList");
+        });
     };
     
     function matchesSearchForm(training) {

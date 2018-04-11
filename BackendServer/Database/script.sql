@@ -47,7 +47,7 @@ CREATE TABLE `training_portal`.`tp_request` (
   `user_id` BIGINT(20) NOT NULL,
   `training_id` BIGINT(20) NOT NULL,
   `status` INT NOT NULL,
-  `rating` INT NOT NULL,
+  `rating` INT NULL,
   `date_created` DATE NOT NULL,
   PRIMARY KEY (`id`));
 

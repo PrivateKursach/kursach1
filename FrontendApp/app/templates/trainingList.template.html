@@ -110,7 +110,7 @@
         <p>Окончание: {{ training.endDate | date:'fullDate' }}</p>
         <p>{{ training.description }}</p>
         <div class="buttons-block">
-            <a class="btn btn-sm btn-primary" ng-if="$ctrl.isLogged && !$ctrl.isAdmin()">Подать заявку</a>
+            <a class="btn btn-sm btn-primary" ng-if="$ctrl.isLogged && !$ctrl.isAdmin()" ng-click="$ctrl.createRequest(training.id)">Подать заявку</a>
         </div>
     </div>
 </div>

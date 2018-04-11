@@ -18,10 +18,10 @@
         <h3>Заявка № {{ request.id }}</h3>
         <p>Пользователь: {{ request.user.firstName }} {{ request.user.lastName }}</p>
         <p>Тренинг: {{ request.training.name }}</p>
-        <p>Статус: {{ request.status }}</p>
+        <p>Статус: {{ request.status | requestStatusFilter }}</p>
         <p ng-if="request.rating">Рейтинг: {{ request.rating }}</p>
         <div class="buttons-block">
-            <a class="btn btn-sm btn-primary" ng-if="$ctrl.isAdmin()" ng-click="$ctrl.approveRequest(request.id)">Одобрить заявку</a>
+            <a class="btn btn-sm btn-primary" ng-if="$ctrl.isAdmin() && request.status == 0" ng-click="$ctrl.approveRequest(request)">Одобрить заявку</a>
         </div>
     </div>
 </div>

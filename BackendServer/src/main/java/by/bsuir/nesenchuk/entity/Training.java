@@ -2,6 +2,7 @@ package by.bsuir.nesenchuk.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,7 +28,7 @@ public class Training {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tp_training_training_type", joinColumns = @JoinColumn(name = "training_id"), inverseJoinColumns = @JoinColumn(name = "training_type_id"))
-    private Set<TrainingType> types;
+    private Set<TrainingType> types = new HashSet<>();
 
     @OneToMany(mappedBy = "training")
     private Set<Request> requests;

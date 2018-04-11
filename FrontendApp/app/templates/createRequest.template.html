@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$ctrl.dismiss()">&times;</button>
+    <h4 class="modal-title">Создание заявки</h4>
+</div>
+<div class="modal-body">
+    <p>Вы уверены что хотите подать заявку на данный тренинг?</p>
+    <div class="alert alert-danger" ng-show="$ctrl.errorMessage">
+        {{ $ctrl.errorMessage }}
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="$ctrl.createRequest()">Создать</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.dismiss()">Отмена</button>
+</div>
