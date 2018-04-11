@@ -55,6 +55,18 @@ function routing($stateProvider, $urlRouterProvider) {
         component: "updateTraining"
     };
 
+    var requestListState = {
+        name: "requestList",
+        url: "/requests?page",
+        component: "requestList",
+        params: {
+            page: {
+                value: '1',
+                squash: true
+            }
+        }
+    };
+
     $stateProvider.state(welcomeState);
     $stateProvider.state(trainingListState);
     $stateProvider.state(registrationState);
@@ -62,4 +74,5 @@ function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(createTrainingState);
     $stateProvider.state(trainingState);
     $stateProvider.state(updateTrainingState);
+    $stateProvider.state(requestListState);
 }
