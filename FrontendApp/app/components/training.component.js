@@ -3,7 +3,7 @@ var trainingComponent = {
     controller : TrainingController
 };
 
-function TrainingController(trainingService, $rootScope, $stateParams, $state, $uibModal) {
+function TrainingController(trainingService, requestService, $rootScope, $stateParams, $state, $uibModal) {
     var $ctrl = this;
 
     $ctrl.$onInit = function () {
@@ -11,6 +11,15 @@ function TrainingController(trainingService, $rootScope, $stateParams, $state, $
         trainingService.getTrainingById($ctrl.trainingId).then(function (response) {
             $ctrl.training = response
         });
+        if ($rootScope.sessionUserRole == 1) {
+            requestService.getRequestsByUserId($rootScope.sessionUserId).then(function (response) {
+                response.forEach(function (item, i, arr) {
+                    if (item.training.id == $ctrl.trainingId) {
+                        $ctrl.trainingRequest = item;
+                    }
+                });
+            });
+        }
     };
 
     $ctrl.isLogged = function () {
@@ -32,6 +41,22 @@ function TrainingController(trainingService, $rootScope, $stateParams, $state, $
         });
         modalInstance.result.then(function () {
             $state.go("trainingList");
+        });
+    };
+
+    $ctrl.rateTraining = function () {
+        var modalInstance = $uibModal.open({
+            component : "rateTraining",
+            resolve : {
+                request : function () {
+                    return $ctrl.trainingRequest;
+                }
+            }
+        });
+        modalInstance.result.then(function () {
+            requestService.getRequestById($ctrl.trainingRequest.id).then(function (response) {
+                $ctrl.trainingRequest = response;
+            });
         });
     }
 }

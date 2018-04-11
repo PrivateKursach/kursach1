@@ -16,4 +16,5 @@ angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap"])
     .component("deleteTraining", deleteTrainingComponent)
     .component("requestList", requestListComponent)
     .component("createRequest", createRequestComponent)
-    .component("approveRequest", approveRequestComponent);
+    .component("approveRequest", approveRequestComponent)
+    .component("rateTraining", rateTrainingComponent);

@@ -9,10 +9,12 @@
         <p>Локация: {{ $ctrl.training.location }}</p>
         <p>Старт: {{ $ctrl.training.startDate | date:'fullDate' }}</p>
         <p>Окончание: {{ $ctrl.training.endDate | date:'fullDate' }}</p>
+        <p ng-if="$ctrl.trainingRequest && $ctrl.trainingRequest.rating">Рейтинг: {{ $ctrl.trainingRequest.rating }}</p>
         <p>{{ $ctrl.training.description }}</p>
         <div class="buttons-block">
             <a class="btn btn-primary btn-md" ng-if="$ctrl.isAdmin()" ui-sref="updateTraining({ trainingId : $ctrl.training.id })">Редактировать</a>
             <a class="btn btn-default btn-md" ng-if="$ctrl.isAdmin()" ng-click="$ctrl.openDeleteTrainingModal($ctrl.training.id)">Удалить</a>
+            <a class="btn btn-primary btn-md" ng-if="$ctrl.trainingRequest && !$ctrl.trainingRequest.rating" ng-click="$ctrl.rateTraining()">Оценить</a>
         </div>
     </div>
 </div>
