@@ -27,7 +27,7 @@
         <div class="panel-footer clearfix">
             <div class="buttons-block">
                 <a class="btn btn-sm btn-success" ui-sref="updateTrainingType({ trainingTypeId : type.id })">Изменить категорию</a>
-                <a class="btn btn-sm btn-default">Удалить категорию</a>
+                <a class="btn btn-sm btn-default" ng-click="$ctrl.deleteTrainingType(type.id)">Удалить категорию</a>
             </div>
         </div>
     </div>
