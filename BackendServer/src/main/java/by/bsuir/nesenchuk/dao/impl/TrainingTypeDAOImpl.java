@@ -16,6 +16,23 @@ public class TrainingTypeDAOImpl implements TrainingTypeDAO {
 
 
     @Override
+    public TrainingType createTrainingType(TrainingType trainingType) {
+        entityManager.persist(trainingType);
+        return trainingType;
+    }
+
+    @Override
+    public TrainingType updateTrainingType(TrainingType trainingType) {
+        return entityManager.merge(trainingType);
+    }
+
+    @Override
+    public void deleteTrainingType(Long id) {
+        TrainingType trainingType = entityManager.find(TrainingType.class, id);
+        entityManager.remove(trainingType);
+    }
+
+    @Override
     public List<TrainingType> getTrainingTypes() {
         return entityManager.createQuery("select tt from TrainingType tt", TrainingType.class).getResultList();
     }

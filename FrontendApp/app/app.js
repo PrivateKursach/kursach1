@@ -4,6 +4,7 @@ angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap", "ng-fusionchart
     .service("sessionService", sessionService)
     .service("userService", userService)
     .service("requestService", requestService)
+    .service("trainingTypeService", trainingTypeService)
     .filter("requestStatusFilter", requestStatusFilter)
     .component("tpMain", tpMainComponent)
     .component("trainingList", trainingListComponent)
@@ -18,4 +19,5 @@ angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap", "ng-fusionchart
     .component("createRequest", createRequestComponent)
     .component("approveRequest", approveRequestComponent)
     .component("rateTraining", rateTrainingComponent)
-    .component("trainingStats", trainingStatsComponent);
+    .component("trainingStats", trainingStatsComponent)
+    .component("trainingTypeList", trainingTypeListComponent);
