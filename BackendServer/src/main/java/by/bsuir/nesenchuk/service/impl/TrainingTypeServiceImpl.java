@@ -27,6 +27,11 @@ public class TrainingTypeServiceImpl implements TrainingTypeService {
     }
 
     @Override
+    public TrainingType getTrainingTypeById(Long id) {
+        return trainingTypeDAO.getTrainingTypeById(id);
+    }
+
+    @Override
     public void deleteTrainingType(Long id) {
         trainingTypeDAO.deleteTrainingType(id);
     }

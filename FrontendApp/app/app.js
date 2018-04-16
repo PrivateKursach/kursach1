@@ -20,4 +20,6 @@ angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap", "ng-fusionchart
     .component("approveRequest", approveRequestComponent)
     .component("rateTraining", rateTrainingComponent)
     .component("trainingStats", trainingStatsComponent)
-    .component("trainingTypeList", trainingTypeListComponent);
+    .component("trainingTypeList", trainingTypeListComponent)
+    .component("createTrainingType", createTrainingTypeComponent)
+    .component("updateTrainingType", updateTrainingTypeComponent);

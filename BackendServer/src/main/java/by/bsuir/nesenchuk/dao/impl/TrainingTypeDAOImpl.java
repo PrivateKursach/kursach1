@@ -27,6 +27,11 @@ public class TrainingTypeDAOImpl implements TrainingTypeDAO {
     }
 
     @Override
+    public TrainingType getTrainingTypeById(Long id) {
+        return entityManager.find(TrainingType.class, id);
+    }
+
+    @Override
     public void deleteTrainingType(Long id) {
         TrainingType trainingType = entityManager.find(TrainingType.class, id);
         entityManager.remove(trainingType);

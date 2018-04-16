@@ -84,6 +84,18 @@ function routing($stateProvider, $urlRouterProvider) {
             }
         } 
     };
+    
+    var createTrainingTypeState = {
+        name: "createTrainingType",
+        url: "/training-types/create",
+        component: "createTrainingType"
+    };
+
+    var updateTrainingTypeState = {
+        name: "updateTrainingType",
+        url: "/training-types/{trainingTypeId}/update",
+        component: "updateTrainingType"
+    };
 
     $stateProvider.state(welcomeState);
     $stateProvider.state(trainingListState);
@@ -95,4 +107,6 @@ function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(requestListState);
     $stateProvider.state(trainingStatsState);
     $stateProvider.state(trainingTypeListState);
+    $stateProvider.state(createTrainingTypeState);
+    $stateProvider.state(updateTrainingTypeState);
 }

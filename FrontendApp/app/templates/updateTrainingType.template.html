@@ -1,0 +1,19 @@
+<div class="jumbotron">
+    <h3>Редактирование категории</h3>
+    <form role="form" name="updateTrainingType">
+        <div class="form-group">
+            <label for="name">Название:</label>
+            <input type="text" class="form-control" id="name" name="name" ng-model="$ctrl.trainingType.name" ng-minlength="6" ng-maxlength="100" required>
+        </div>
+        <div class="alert alert-danger" ng-show="updateTrainingType.name.$touched && updateTrainingType.name.$error.required">
+            Название категории обязательно для заполнения
+        </div>
+        <div class="alert alert-danger" ng-show="updateTrainingType.name.$touched && updateTrainingType.name.$error.minlength">
+            Минимальная длина названия 6 символов
+        </div>
+        <div class="alert alert-danger" ng-show="updateTrainingType.name.$touched && updateTrainingType.name.$error.maxlength">
+            Максимальная длина названия 100 символов
+        </div>
+        <button type="submit" class="btn btn-md btn-success" ng-click="$ctrl.updateTrainingType()">Сохранить</button>
+    </form>
+</div>

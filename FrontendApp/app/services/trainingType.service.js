@@ -27,4 +27,13 @@ function trainingTypeService($http) {
             url : "http://localhost:8081/rest/training-types/" + trainingTypeId
         });
     };
+    
+    service.getTrainingTypeById = function (trainingTypeId) {
+        return $http({
+            method : "GET",
+            url : "http://localhost:8081/rest/training-types/" + trainingTypeId
+        }).then(function (response) {
+            return response.data;
+        });
+    };
 }

@@ -7,6 +7,7 @@ import java.util.List;
 public interface TrainingTypeDAO {
     TrainingType createTrainingType(TrainingType trainingType);
     TrainingType updateTrainingType(TrainingType trainingType);
+    TrainingType getTrainingTypeById(Long id);
     void deleteTrainingType(Long id);
     List<TrainingType> getTrainingTypes();
 }

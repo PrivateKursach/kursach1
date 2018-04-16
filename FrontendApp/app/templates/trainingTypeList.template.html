@@ -1,6 +1,6 @@
 <div class="clearfix">
     <div class="buttons-block">
-        <a ng-if="$ctrl.isAdmin()" class="btn btn-success btn-md" ui-sref="createTrainingType">Создать категорию</a>
+        <a class="btn btn-success btn-md" ui-sref="createTrainingType">Создать категорию</a>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="buttons-block">
-                <a class="btn btn-sm btn-success">Изменить категорию</a>
+                <a class="btn btn-sm btn-success" ui-sref="updateTrainingType({ trainingTypeId : type.id })">Изменить категорию</a>
                 <a class="btn btn-sm btn-default">Удалить категорию</a>
             </div>
         </div>

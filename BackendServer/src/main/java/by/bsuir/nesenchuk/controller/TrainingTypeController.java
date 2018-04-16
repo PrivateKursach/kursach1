@@ -36,4 +36,9 @@ public class TrainingTypeController {
         trainingTypeService.deleteTrainingType(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TrainingTypeDTO> getTrainingTypeById(@PathVariable Long id) {
+        return ResponseEntity.ok(trainingTypeConverter.convertToDTO(trainingTypeService.getTrainingTypeById(id)));
+    }
 }
