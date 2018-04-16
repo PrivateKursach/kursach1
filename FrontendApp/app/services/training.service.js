@@ -72,4 +72,13 @@ function trainingService($http) {
             return response.data;
         });
     };
+    
+    service.getStatsByTrainingId = function (trainingId) {
+        return $http({
+            method: "GET",
+            url: "http://localhost:8081/rest/trainings/" + trainingId + "/stats"
+        }).then(function (response) {
+            return response.data;
+        });
+    };
 }

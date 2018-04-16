@@ -1,4 +1,4 @@
-angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap"])
+angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap", "ng-fusioncharts"])
     .config(routing)
     .service("trainingService", trainingService)
     .service("sessionService", sessionService)
@@ -17,4 +17,5 @@ angular.module("app", ["ngCookies", "ui.router", "ui.bootstrap"])
     .component("requestList", requestListComponent)
     .component("createRequest", createRequestComponent)
     .component("approveRequest", approveRequestComponent)
-    .component("rateTraining", rateTrainingComponent);
+    .component("rateTraining", rateTrainingComponent)
+    .component("trainingStats", trainingStatsComponent);

@@ -3,9 +3,11 @@ package by.bsuir.nesenchuk.controller;
 import by.bsuir.nesenchuk.converter.TrainingConverter;
 import by.bsuir.nesenchuk.converter.TrainingTypeConverter;
 import by.bsuir.nesenchuk.dto.TrainingDTO;
+import by.bsuir.nesenchuk.dto.TrainingStatsDTO;
 import by.bsuir.nesenchuk.dto.TrainingTypeDTO;
 import by.bsuir.nesenchuk.entity.Training;
 import by.bsuir.nesenchuk.service.TrainingService;
+import by.bsuir.nesenchuk.service.TrainingStatsService;
 import by.bsuir.nesenchuk.service.TrainingTypeService;
 import by.bsuir.nesenchuk.validator.DTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class TrainingController {
     private TrainingConverter trainingConverter;
     @Autowired
     private TrainingTypeConverter trainingTypeConverter;
+    @Autowired
+    private TrainingStatsService trainingStatsService;
     @Autowired
     private DTOValidator dtoValidator;
 
@@ -72,5 +76,10 @@ public class TrainingController {
     @GetMapping("/{id}")
     public ResponseEntity<TrainingDTO> getTrainingById(@PathVariable Long id) {
         return ResponseEntity.ok(trainingConverter.convertToDTO(trainingService.getTrainingById(id)));
+    }
+
+    @GetMapping("/{id}/stats")
+    public ResponseEntity<TrainingStatsDTO> getStatsById(@PathVariable Long id) {
+        return ResponseEntity.ok(trainingStatsService.getStats(id));
     }
 }

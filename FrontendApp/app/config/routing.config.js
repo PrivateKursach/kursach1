@@ -66,6 +66,12 @@ function routing($stateProvider, $urlRouterProvider) {
             }
         }
     };
+    
+    var trainingStatsState = {
+        name: "trainingStats",
+        url: "/trainings/{trainingId}/stats",
+        component: "trainingStats"
+    };
 
     $stateProvider.state(welcomeState);
     $stateProvider.state(trainingListState);
@@ -75,4 +81,5 @@ function routing($stateProvider, $urlRouterProvider) {
     $stateProvider.state(trainingState);
     $stateProvider.state(updateTrainingState);
     $stateProvider.state(requestListState);
+    $stateProvider.state(trainingStatsState);
 }
