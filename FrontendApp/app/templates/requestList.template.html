@@ -14,14 +14,20 @@
 </div>
 
 <div class="clearfix">
-    <div class="well clearfix" ng-repeat="request in $ctrl.requestList">
-        <h3>Заявка № {{ request.id }}</h3>
-        <p>Пользователь: {{ request.user.firstName }} {{ request.user.lastName }}</p>
-        <p>Тренинг: {{ request.training.name }}</p>
-        <p>Статус: {{ request.status | requestStatusFilter }}</p>
-        <p ng-if="request.rating">Рейтинг: {{ request.rating }}</p>
-        <div class="buttons-block">
-            <a class="btn btn-sm btn-primary" ng-if="$ctrl.isAdmin() && request.status == 0" ng-click="$ctrl.approveRequest(request)">Одобрить заявку</a>
+    <div class="panel panel-default clearfix" ng-repeat="request in $ctrl.requestList">
+        <div class="panel-heading">
+            <h4>Заявка № {{ request.id }}</h4>
+        </div>
+        <div class="panel-body">
+            <p>Пользователь: {{ request.user.firstName }} {{ request.user.lastName }}</p>
+            <p>Тренинг: {{ request.training.name }}</p>
+            <p>Статус: {{ request.status | requestStatusFilter }}</p>
+            <p ng-if="request.rating">Рейтинг: {{ request.rating }}</p>
+        </div>
+        <div class="panel-footer clearfix" ng-if="$ctrl.isAdmin() && request.status == 0">
+            <div class="buttons-block">
+                <a class="btn btn-sm btn-success" ng-click="$ctrl.approveRequest(request)">Одобрить заявку</a>
+            </div>
         </div>
     </div>
 </div>
