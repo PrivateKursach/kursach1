@@ -113,7 +113,7 @@
             <p>Окончание: {{ training.endDate | date:'fullDate' }}</p>
             <p>{{ training.description }}</p>
         </div>
-        <div class="panel-footer clearfix" ng-if="$ctrl.isLogged && !$ctrl.isAdmin()">
+        <div class="panel-footer clearfix" ng-if="$ctrl.isLogged() && !$ctrl.isAdmin() && !$ctrl.isAlreadyRequested(training.id)">
             <div class="buttons-block">
                 <a class="btn btn-sm btn-success" ng-click="$ctrl.createRequest(training.id)">Подать заявку</a>
             </div>

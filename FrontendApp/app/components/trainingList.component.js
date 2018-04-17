@@ -3,7 +3,7 @@ var trainingListComponent = {
     controller : TrainingListController
 };
 
-function TrainingListController(trainingService, $state, $stateParams, $rootScope, $uibModal) {
+function TrainingListController(trainingService, requestService, $state, $stateParams, $rootScope, $uibModal) {
     var $ctrl = this;
 
     $ctrl.$onInit = function () {
@@ -53,6 +53,11 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
         trainingService.getAllTrainingLocations().then(function (response) {
             $ctrl.locations = response;
         });
+        if ($rootScope.sessionUserId != null && $rootScope.sessionUserRole == 1) {
+            requestService.getRequestsByUserId($rootScope.sessionUserId).then(function (response) {
+                $ctrl.userRequests = response;
+            });
+        }
     };
 
     $ctrl.getStateInfo = function () {
@@ -139,6 +144,16 @@ function TrainingListController(trainingService, $state, $stateParams, $rootScop
         modalInstance.result.then(function () {
             $state.go("requestList");
         });
+    };
+    
+    $ctrl.isAlreadyRequested = function (trainingId) {
+        var alreadyRequested = false;
+        $ctrl.userRequests.forEach(function (item, i, arr) {
+            if (item.training.id == trainingId) {
+                alreadyRequested = true;
+            }
+        });
+        return alreadyRequested;
     };
     
     function matchesSearchForm(training) {
